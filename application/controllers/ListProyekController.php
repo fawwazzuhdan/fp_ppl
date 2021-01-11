@@ -13,6 +13,25 @@ class ListProyekController extends CI_Controller {
         var_dump($data);
         // $this->load->view('listproyek', $data);
     }
+    public function show_formInputData()
+    {
+        $this->load->view('form_input_proyek');
+    }
+    public function save_proyek()
+    {
+        $insert_data = [
+            'nama_proyek' => $this->input->post('namaproyek'),
+            'lokasi_proyek' => $this->input->post('lokasiproyek'),
+        ];
+        try {
+            $this->db->insert('proyek', $insert_data);
+            $this->session->set_flashdata('message', array('type' => 'success', 'message' => 'Sukses Menambah Proyek'));
+            return redirect(base_url('ListProyekController/show_listProyek'));
+        } catch (Exception $e) {
+            $this->session->set_flashdata('message', array('type' => 'error', 'message' => validation_errors()));
+            return redirect(base_url('ListProyekController/show_formInputData'));
+        }
+    }
     public function get_ListProyek($id)
     {
         $proyek = $this->ListProyekModel->getProyek($id);
