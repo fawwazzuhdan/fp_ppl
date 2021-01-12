@@ -10,8 +10,7 @@ class ListProyekController extends CI_Controller {
     public function show_listProyek()
     {
         $data['listproyek'] = $this->ListProyekModel->getListProyek();
-        var_dump($data);
-        // $this->load->view('listproyek', $data);
+        $this->load->view('listproyek', $data);
     }
     public function show_formInputData()
     {
@@ -35,14 +34,12 @@ class ListProyekController extends CI_Controller {
     public function get_ListProyek($id)
     {
         $proyek = $this->ListProyekModel->getProyek($id);
-        var_dump($proyek);
-        // $this->load->view('proyek', $proyek);
+        $this->load->view('proyek', $proyek);
     }
     public function edit_ListProyek($id)
     {
         $proyek = $this->ListProyekModel->getProyek($id);
-        var_dump($proyek);
-        // $this->load->view('editproyek', $proyek);
+        $this->load->view('editproyek', $proyek);
     }
     public function delete_ListProyek($id)
     {
@@ -52,7 +49,7 @@ class ListProyekController extends CI_Controller {
         }catch(Exception $e){
             return false;
         }
-        // $this->session->set_flashdata('message', array('type' => 'success', 'message' => 'Proyek Berhasil Dihapus'));
+        $this->session->set_flashdata('message', array('type' => 'success', 'message' => 'Proyek Berhasil Dihapus'));
         return redirect(base_url('ListProyekController/show_listProyek'));
     }
     public function update_ListProyek()
@@ -69,7 +66,7 @@ class ListProyekController extends CI_Controller {
         {
             return false;
         }
-        // $this->session->set_flashdata('message', array('type' => 'success', 'message' => 'Sukses Mengedit Proyek'));
+        $this->session->set_flashdata('message', array('type' => 'success', 'message' => 'Sukses Mengedit Proyek'));
         return redirect(base_url('ListProyekController/get_ListProyek/'.$idproyek));
     }
 }
